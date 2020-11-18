@@ -1,0 +1,25 @@
+
+body {
+    color: #000000;
+    background-color: #4F8BF9;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: 'IBM Plex Serif', serif;
+}
+
+.stButton>button {
+    color: #000000;
+    /*border-radius: 50%;*/
+    height: 3em;
+    width: 6em;
+    font-weight: bold;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: 'IBM Plex Serif', serif;
+
+}
+.stRadio>div>div>input {
+  color: #ffff
+}
+
+.stTextInput>div>div>input {
+  color:#000000 ;
+}

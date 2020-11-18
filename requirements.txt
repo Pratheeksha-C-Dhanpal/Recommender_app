@@ -2,6 +2,7 @@ base58==2.0.1
 beautifulsoup4==4.6.0
 cloudpickle==0.5.3
 comtypes==1.1.4
+Cython==0.28.2
 decorator==4.3.0
 fastcache==1.0.2
 gitdb==4.0.5

@@ -223,11 +223,9 @@ def set_png_as_page_bg(png_file):
     bin_str = get_base64_of_bin_file(png_file)
     page_bg_img = '''
     <style>
-    @media only screen and (min-width: 320px) {
-        body {
-            background-image: url("data:image/png;base64,%s");
-            #background-size: cover;
-        }
+    body {
+    background-image: url("data:image/png;base64,%s");
+    background-size: cover;
     }
     </style>
     ''' % bin_str

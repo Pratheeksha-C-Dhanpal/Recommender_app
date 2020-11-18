@@ -178,7 +178,7 @@ def genre_based(genre, percentile=0.85, n=10):
     rec['ImdbScore']=df['score']
     return rec
 
-
+@st.cache(allow_output_mutation=True)
 def rating_based(score):
     rt=new_df[['title', 'director','year','score']]
     rt['Director']=alldata['director']
@@ -223,9 +223,11 @@ def set_png_as_page_bg(png_file):
     bin_str = get_base64_of_bin_file(png_file)
     page_bg_img = '''
     <style>
-    body {
-    background-image: url("data:image/png;base64,%s");
-    background-size: cover;
+    @media only screen and (min-width: 320px) {
+        body {
+            background-image: url("data:image/png;base64,%s");
+            #background-size: cover;
+        }
     }
     </style>
     ''' % bin_str

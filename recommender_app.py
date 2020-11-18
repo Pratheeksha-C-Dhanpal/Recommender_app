@@ -209,7 +209,7 @@ def rating_based(score):
     return result.head(30)
 
 st.title('Hollywood Movie Recommendation :movie_camera:')
-st.subheader('Recommends movies based on Movie Name, Genre and Ratings')
+st.subheader('Recommends movies based on Movie Name, Genre and Ratings!!')
 
 
 

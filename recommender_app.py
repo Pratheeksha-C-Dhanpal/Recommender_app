@@ -210,7 +210,7 @@ def rating_based(score):
 
 st.title('Hollywood Movie Recommendation :movie_camera:')
 st.subheader('Recommends movies based on Movie Name, Genre and Ratings!!')
-st.text(":point_up: :point_left: Please click on the navigation tab on the top left corner to view more options. :smile:")
+st.write(':point_up: :point_left: Please click on the navigation tab on the top left corner to view more options. :smile:')
 
 
 

@@ -7,7 +7,7 @@ body {
 }
 
 .stButton>button {
-    color: #e6b1fc;
+    color: #000000;
     /*border-radius: 50%;*/
     height: 3em;
     width: 7em;
@@ -15,9 +15,6 @@ body {
     font-family: 'IBM Plex Sans', sans-serif;
     font-family: 'IBM Plex Serif', serif;
 
-}
-.stRadio>div>div>input {
-  color: #ffff
 }
 
 .stTextInput>div>div>input {

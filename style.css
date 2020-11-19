@@ -8,7 +8,7 @@ body {
 
 .stButton>button {
     color: #000000;
-    border: 2px solid #ddb6fc;
+    background-color: green;
     /*border-radius: 50%;*/
     height: 3em;
     width: 7em;

@@ -181,7 +181,7 @@ def genre_based(genre, percentile=0.85, n=10):
 @st.cache(allow_output_mutation=True)
 def rating_based(score):
     rt=new_df[['title', 'director','year','score']]
-    rt['Director']=new_df['director']
+    rt['Director']=alldata['director']
     rt.rename(columns={'title':'Title'},inplace=True)
     rt.rename(columns={'year':'Year'},inplace=True)
     rt.rename(columns={'score':'ImdbScore'},inplace=True)

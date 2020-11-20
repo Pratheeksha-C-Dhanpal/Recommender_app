@@ -97,7 +97,7 @@ def load_data():
     gen.transpose()
     new_df['cast'] = new_df['cast'].apply(lambda x: [str.lower(i.replace(" ", "")) for i in x])
     new_df['dir'] = new_df['director'].astype('str').apply(lambda x: str.lower(x.replace(" ", "")))
-    new_df['dir'] = new_df['director'].apply(lambda x: [x,x, x])
+    new_df['dir'] = new_df['dir'].apply(lambda x: [x,x, x])
     new_df = new_df[new_df.astype(str)['cast'] != '[]']
     new_df = new_df[new_df.astype(str)['keywords'] != '[]']
     s = new_df.apply(lambda x: pd.Series(x['keywords']),axis=1).stack().reset_index(level=1, drop=True)

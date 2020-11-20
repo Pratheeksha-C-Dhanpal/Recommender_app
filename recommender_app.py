@@ -96,8 +96,8 @@ def load_data():
     gen= rdf.drop('genres', axis=1).join(g)
     gen.transpose()
     new_df['cast'] = new_df['cast'].apply(lambda x: [str.lower(i.replace(" ", "")) for i in x])
-    new_df['director'] = new_df['director'].astype('str').apply(lambda x: str.lower(x.replace(" ", "")))
-    new_df['director'] = new_df['director'].apply(lambda x: [x,x, x])
+    new_df['dir'] = new_df['director'].astype('str').apply(lambda x: str.lower(x.replace(" ", "")))
+    new_df['dir'] = new_df['director'].apply(lambda x: [x,x, x])
     new_df = new_df[new_df.astype(str)['cast'] != '[]']
     new_df = new_df[new_df.astype(str)['keywords'] != '[]']
     s = new_df.apply(lambda x: pd.Series(x['keywords']),axis=1).stack().reset_index(level=1, drop=True)
@@ -116,7 +116,7 @@ def load_data():
     new_df['keywords'] = new_df['keywords'].apply(filter_keywords)
     new_df['keywords'] = new_df['keywords'].apply(lambda x: [stemmer.stem(i) for i in x])
     new_df['keywords'] = new_df['keywords'].apply(lambda x: [str.lower(i.replace(" ", "")) for i in x])
-    new_df['allwords'] = new_df['keywords'] + new_df['cast'] + new_df['director'] + new_df['genres']
+    new_df['allwords'] = new_df['keywords'] + new_df['cast'] + new_df['dir'] + new_df['genres']
     new_df['allwords'] = new_df['allwords'].apply(lambda x: ' '.join(x))
     return new_df,alldata,imdbscore,gen
 
@@ -144,7 +144,7 @@ def recommendations(title):
     #qualified['vote_average'] = qualified['vote_average'].astype('int')
     qualified.rename(columns={'title':'Title'},inplace=True)
     qualified.rename(columns={'year':'Year'},inplace=True)
-    qualified['Director']=alldata['director']
+    qualified['Director']=new_df['director']
     qualified['IMDBScore'] = mov.apply(imdbscore, axis=1)
     qualified = qualified.sort_values('IMDBScore', ascending=False).head(10)
     qualified['IMDBScore']=round(qualified['IMDBScore'], 2)
@@ -181,7 +181,7 @@ def genre_based(genre, percentile=0.85, n=10):
 @st.cache(allow_output_mutation=True)
 def rating_based(score):
     rt=new_df[['title', 'director','year','score']]
-    rt['Director']=alldata['director']
+    rt['Director']=new_df['director']
     rt.rename(columns={'title':'Title'},inplace=True)
     rt.rename(columns={'year':'Year'},inplace=True)
     rt.rename(columns={'score':'ImdbScore'},inplace=True)

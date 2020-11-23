@@ -13,7 +13,7 @@ from nltk.stem.snowball import SnowballStemmer
 import urllib.request
 import plotly.graph_objects as go
 
-@st.cache(allow_output_mutation=True)
+@st.cache(allow_output_mutation=True, max_entries=10, ttl=3600)
 def load_data():
     credits = pd.read_csv('tmdb_5000_credits.csv')
     movies = pd.read_csv("tmdb_5000_movies.csv")
@@ -129,7 +129,7 @@ new_df = new_df.reset_index()
 titles = new_df['title']
 indices = pd.Series(new_df.index, index=new_df['title'])
 
-@st.cache(allow_output_mutation=True)
+@st.cache(allow_output_mutation=True, max_entries=10, ttl=3600)
 def recommendations(title):
     idx = indices[title]
     sim_scores = list(enumerate(cosine_sim[idx]))
@@ -153,7 +153,7 @@ def recommendations(title):
     return qualified
 
 
-@st.cache(allow_output_mutation=True)
+@st.cache(allow_output_mutation=True, max_entries=10, ttl=3600)
 def genre_based(genre, percentile=0.85, n=10):
     df = gen[gen['genre'] == genre]
     vote_counts = df[df['vote_count'].notnull()]['vote_count'].astype('int')
@@ -178,7 +178,7 @@ def genre_based(genre, percentile=0.85, n=10):
     rec['ImdbScore']=df['score']
     return rec
 
-@st.cache(allow_output_mutation=True)
+@st.cache(allow_output_mutation=True, max_entries=10, ttl=3600)
 def rating_based(score):
     rt=new_df[['title', 'director','year','score']]
     rt['Director']=new_df['director']
@@ -214,7 +214,7 @@ st.write(':point_up: :point_left: Please click on the navigation tab on the top 
 
 
 
-@st.cache(allow_output_mutation=True)
+#@st.cache(allow_output_mutation=True)
 def get_base64_of_bin_file(bin_file):
     with open(bin_file, 'rb') as f:
         data = f.read()

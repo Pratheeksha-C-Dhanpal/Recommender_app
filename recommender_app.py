@@ -2,7 +2,6 @@ import streamlit as st
 import base64
 import pandas as pd
 import numpy as np
-from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import json
 import warnings
@@ -12,6 +11,7 @@ from IPython.display import HTML
 from nltk.stem.snowball import SnowballStemmer
 import urllib.request
 import plotly.graph_objects as go
+from sklearn.feature_extraction.text import CountVectorizer
 
 @st.cache(allow_output_mutation=True, max_entries=10, ttl=3600)
 def load_data():
